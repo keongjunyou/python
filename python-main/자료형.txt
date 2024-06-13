@@ -43,3 +43,83 @@
    엔진의 속도면에서는 부동소수점이 유리해보임
    현재 엔진에서의 소수점은 4자리까지만 표현되는 것으로 알고 있고, 따라서 극한으로 정확한 소수점 (예:9~10 째 자리)까지 표현할 필요가 있을까에 대한 의견
    하지만 common 폴더의 calculator.py 에 Decimal 객체를 사용하는 것으로 보아 정확한 계산이 필요할 시에 해당 객체를 사용하고 그렇지 않다면 부동 소수점을 사용해도 될것 같다는 생각
+
+
+
+f 문자열 포맷팅
+
+1. 다른 언어와의 차이점 (서로 다른 자료형의 문자열 포맷팅)
+   Python의 f 문자열은 간결하고 읽기 쉬운 문자열 포맷팅 방법
+   다양한 데이터 타입을 손쉽게 문자열로 변환할 수 있고 다른 언어와는 차이점이 있다.
+
+   # python
+   name = "Alice"
+   age = 30
+   height = 5.5
+   formatted_string = f"Name: {name}, Age: {age}, Height: {height}"
+   print(formatted_string)  # 출력: Name: Alice, Age: 30, Height: 5.5
+
+   # java
+   String name = "Alice";
+   int age = 30;
+   double height = 5.5;
+   String formattedString = String.format("Name: %s, Age: %d, Height: %.1f", name, age, height);
+   System.out.println(formattedString); // 출력: Name: Alice, Age: 30, Height: 5.5
+
+   # javascript
+   let name = "Alice";
+   let age = 30;
+   let height = 5.5;
+   let formattedString = Name: ${name}, Age: ${age}, Height: ${height};
+   console.log(formattedString); // 출력: Name: Alice, Age: 30, Height: 5.5
+
+   다른 언어와의 차이점
+   python: f-string은 {} 안에 변수나 표현식을 직접 삽입해 간결하게 문자열 포맷
+   java: String.format 메서드 사용
+   javascript: 템플릿 리터럴 사용
+
+
+
+자료형의 타입 구분 (1차)
+
+1. 원시 타입과 참조 타입의 차이점
+   원시 타입 (Primitive Type): 기본적인 데이터 형식으로 고정된 크기 가짐  (예: int, float, char, boolean, ...)
+   참조 타입 (Reference Type): 데이터가 저장된 메모리 주소를 참조하는 형식으, 크기가 가변적 (예: List, Dict, Object, ...)
+
+   원시 타입
+   데이터 크기: 고정된 크기를 가짐
+   메모리 저장: 변수에 실제 값이 저장
+   변수 비교: 변수 비교 시 실제 값을 비교
+
+   x = 5
+   y = x
+   y = 10
+   print(x)  # 출력: 5 (x와 y는 독립적인 값을 가짐)
+
+
+   참조 타입
+   데이터 크기: 크기가 가변적
+   메모리 저장: 변수에 데이터가 저장된 메모리 주소가 저장
+   변수 비교: 변수 비교 시 메모리 주소를 비교
+
+   list1 = [1, 2, 3]
+   list2 = list1
+   list2.append(4)
+   print(list1)  # 출력: [1, 2, 3, 4] (list1과 list2는 동일한 메모리 주소를 참조)
+
+
+
+2. 원시 타입과 참조 타입은 메모리 공간을 어떻게 사용하는지
+
+   원시 타입의 메모리 사용
+   원시 타입 변수는 스택(Stack) 메모리에 실제 값을 저장. 크기가 고정되어 있고 직접 접근 빠름
+   # Python 예제 (원시 타입 변수)
+   x = 42           # x는 스택에 42를 저장
+   print(id(x))     # x의 메모리 주소 출력
+
+
+   참조 타입의 메모리 사용
+   참조 타입 변수는 힙(Heap) 메모리에 데이터를 저장하고, 변수는 데이터가 저장된 메모리 주소를 스택에 저장
+   # Python 예제 (참조 타입 변수)
+   my_list = [1, 2, 3]     # my_list는 힙 메모리에 리스트를 저장하고, 그 주소를 스택에 저장
+   print(id(my_list))      # my_list의 메모리 주소 출력

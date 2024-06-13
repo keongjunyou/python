@@ -30,9 +30,36 @@ from decimal import Decimal
 c = Decimal('0.1') + Decimal('0.2')
 print(c)       # 0.3
 
-# # 4. 정확한 소수점 연산을 위해 사용되는 라이브러리의 문제
+# 4. 정확한 소수점 연산을 위해 사용되는 라이브러리의 문제
 from datetime import datetime
 start_time = datetime.now()
 c = Decimal('0.1') + Decimal('0.2')
 # d = 0.1 + 0.2    # 소요 시간 : 0:00:00.001000
 print(f"result: {c} , exec time : {datetime.now() - start_time}")    # 소요 시간 : 0:00:00.000611
+
+# f 문자열 포맷팅
+name = "Python"
+age = 30
+height = 180
+fstring = f"Name: {name}, Age: {age}, Height: {height}"
+print(fstring)
+
+# 원시 타입과 참조 타입의 차이점 (원시 타입)
+x = 5
+y = x
+y = 10
+print(x)                # 5
+
+# 원시 타입과 참조 타입의 차이점 (참조 타입)
+list1 = [1, 2, 3]
+list2 = list1
+list2.append(4)
+print(list1)            # [1, 2, 3, 4]
+
+# 원시 타입과 참조 타입의 메모리 공간 사용 (원시 타입)
+x = 42
+print(id(x))            # 140733719283784
+
+# 원시 타입과 참조 타입의 메모리 공간 사용 (참조 타입)
+my_list = [1, 2, 3]
+print(id(my_list))      # 2627633853440
